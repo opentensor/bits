@@ -23,7 +23,7 @@ BITs are classified into the following categories:
 - **Networking:** Proposals related to networking protocols, node interactions, or networking
   infrastructure.
 - **Interface:** Proposals related to API, CLI, or user interface improvements.
-- **Meta:** Proposals about processes or changes to the BIT system itself.
+- **Meta:** Proposals about processes or changes to the BITs system itself.
 - **Informational:** Proposals that provide general guidelines or information to the Bittensor
   community but do not propose a new feature.
 
