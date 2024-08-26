@@ -1,17 +1,18 @@
 # Bittensor Improvement Proposals (BIPs)
 
-Welcome to the Bittensor Improvement Proposals (BIPs) repository. This repository serves as the
-central location for submitting, discussing, and tracking proposals for changes and
-improvements to the Bittensor protocol.
+Welcome to the Bittensor Improvement Proposals (BIPs)
+[repository](https://github.com/opentensor/bips). This repository serves as the central
+location for submitting, discussing, and tracking proposals for changes and improvements to the
+Bittensor protocol.
 
 ## What is a BIP?
 
-A Bittensor Improvement Proposal (BIP) is a design document providing information to the
-Bittensor community or describing a new feature for Bittensor, its processes, or its
-environment. The BIP should provide a concise technical specification of the feature and a
-rationale for the feature. BIPs are intended to be the primary mechanism for proposing new
-features, collecting community input on an issue, and documenting the design decisions that
-have gone into Bittensor.
+A Bittensor Improvement Proposal (BIP) is a technical design document providing information to
+the Bittensor community or describing new features for the Bittensor protocol and surrounding
+ecosystem. A BIP should provide a convincing rationale for and a concise technical
+specification of any underlying features described in the BIP. BIPs are intended to be the
+primary mechanism for proposing new features and changes, collecting community input on an
+issue, and documenting design decisions that impact the protocol.
 
 ## BIP Types
 
