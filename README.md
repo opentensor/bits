@@ -48,7 +48,7 @@ BITs pass through several stages before it becomes final:
 
 1. **Fork this repository.**
 2. **Create a new file** in the `bits/` directory named `BIT-XXXX.md`, where `XXXX` is the next
-   available BIT number. You can use the [BIT template](BIT-0000-template.md) as a starting
+   available BIT number. You can use the [BIT template](bits/BIT-0000-template.md) as a starting
    point.
 3. **Fill in the template** with your proposal details.
 4. **Submit a pull request** with your new BIT. The title should be "BIT-XXXX: [Title]" where
