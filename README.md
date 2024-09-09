@@ -70,17 +70,6 @@ BIT template. Once a BIT is accepted and merged, its number is locked and cannot
 - **Reviewer:** Any community member who reviews and provides feedback on BITs during the Draft
   and Review stages.
 
-## BITs Workflow
-
-The typical workflow for a BIT is as follows:
-
-1. **Draft:** The BIT is submitted as a pull request and is open for discussion.
-2. **Review:** After initial discussion, the BIT moves to the Review stage, where it undergoes
-   more rigorous analysis.
-3. **Last Call:** If the BIT passes the Review stage, it enters the Last Call phase for any
-   final comments.
-4. **Final:** The BIT is finalized, merged, and implemented (if applicable).
-
 ## FAQs
 
 ### What is the purpose of BITs?
