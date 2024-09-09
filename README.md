@@ -70,6 +70,11 @@ BIT tenet. Once a BIT is accepted and merged, its number is locked and cannot be
 - **Reviewer:** Any community member who reviews and provides feedback on BITs during the Draft
   and Review stages.
 
+## Discussions
+
+A discussion forum is provided at https://github.com/opentensor/bits/discussions for discussing
+preliminary ideas and collecting informal feedback before submitting a BIT.
+
 ## FAQs
 
 ### What is the purpose of BITs?
