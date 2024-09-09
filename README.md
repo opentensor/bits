@@ -1,13 +1,13 @@
-# Bittensor Improvement Templates (BITs)
+# Bittensor Improvement Tenets (BITs)
 
-Welcome to the Bittensor Improvement Templates (BITs)
+Welcome to the Bittensor Improvement Tenets (BITs)
 [repository](https://github.com/opentensor/bits). This repository serves as the central
 location for submitting, discussing, and tracking proposals for changes and improvements to the
 Bittensor protocol.
 
 ## What are BITs?
 
-A Bittensor Improvement Template (BIT) is a technical design document providing information to
+A Bittensor Improvement Tenet (BIT) is a technical design document providing information to
 the Bittensor community or describing new features for the Bittensor protocol and surrounding
 ecosystem. A BIT should provide a convincing rationale for and a concise technical
 specification of any underlying features described in the BIT. BITs are intended to be the
@@ -48,9 +48,9 @@ BITs pass through several stages before it becomes final:
 
 1. **Fork this repository.**
 2. **Create a new file** in the `bits/` directory named `BIT-XXXX.md`, where `XXXX` is the next
-   available BIT number. You can use the [BIT template](bits/BIT-0000-template.md) as a starting
+   available BIT number. You can use the [BIT tenet](bits/BIT-0000-tenet.md) as a starting
    point.
-3. **Fill in the template** with your proposal details.
+3. **Fill in the tenet** with your proposal details.
 4. **Submit a pull request** with your new BIT. The title should be "BIT-XXXX: [Title]" where
    `XXXX` is your BIT number.
 5. **Engage in the discussion**: Address any feedback from the community and BIT editors during
@@ -59,7 +59,7 @@ BITs pass through several stages before it becomes final:
 ## BITs Numbering
 
 BITs are assigned numbers in the order they are proposed. The number `0000` is reserved for the
-BIT template. Once a BIT is accepted and merged, its number is locked and cannot be changed.
+BIT tenet. Once a BIT is accepted and merged, its number is locked and cannot be changed.
 
 ## Roles and Responsibilities
 
