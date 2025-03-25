@@ -3,7 +3,7 @@
 - **BIT Number:** 0006
 - **Title:** Subnet Lending
 - **Author(s):** [Name(s) and contact information]
-- **Discussions-to:** [URL for discussion thread]
+- **Discussions-to:** [Github discussion](https://github.com/opentensor/bits/discussions/16)
 - **Status:** Draft
 - **Type:** Subtensor
 - **Created:** 24/03/2025
