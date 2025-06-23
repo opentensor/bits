@@ -193,6 +193,8 @@ Therefore, this BIT proposes a tightly-scoped **Network Subsidy model**. The cor
 
 To prevent abuse of this subsidy (e.g., a subnet owner deploying a computationally expensive contract to cause extreme load on the chain), we introduce a crucial safeguard: a new global root-only hyperparameter, `weight_verification_gas_limit`. Any subsidized transaction must have a gas limit below this value. This ensures that even a malicious contract cannot consume excessive block resources.
 
+The proposed initial value for `weight_verification_gas_limit` is 1,000,000 gas (~1.3% of the block space). This is a reasonable starting point based on the block limit of `75,000,000` gas, and a simulated large verification transaction consuming `500,000` gas. This can be adjusted as needed.
+
 Pseudocode for the full validation logic is as follows:
 
 ```rust
