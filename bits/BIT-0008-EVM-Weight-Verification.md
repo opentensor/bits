@@ -106,7 +106,7 @@ sequenceDiagram
 
     %% Commit Epoch (E_commit)
     Note over S: Epoch E_commit, where E_commit % WVI == 0 (Verification Epoch)
-    S->>S: Deterministically select Validator V<br/>using stake-weighted categorical sampling<br/>with latest drand beacon
+    S->>S: Deterministically select Validator V<br/>using stake-weighted categorical sampling<br/>with drand beacon from previous tempo
     Note over S,V: P(selection[V]) ∝ V.stake
     V->>C: Call weight_verification_contract_address
     C->>S: Call storeVerifiedWeightsHash precompile
@@ -144,12 +144,19 @@ This step occurs during a designated "Verification Epoch".
   ```rust
   // Categorical sampling weighted by stake
   let total_stake: f64 = S.iter().sum();
-  let random_value = (drand::random(b"validator_selection").0 as f64 / u64::MAX as f64) * total_stake;
+  // Should never occur, but we trap it just in case.
+  if total_stake == 0.0 { return 0; }
+  let rand_u64 = u64::from_be_bytes(drand::random_at(last_epoch_start)[0..8].try_into().unwrap());
+  if rand_u64 == u64::MAX { return S.iter().rposition(|&s| s > 0.0).unwrap_or(0) as u16; }
+  let random_value = (rand_u64 as f64 / u64::MAX as f64) * total_stake;
   let mut cumulative = 0.0;
   for (i, &s) in S.iter().enumerate() {
-      cumulative += s;
-      if random_value < cumulative { return i as u16; }
+    if *s == 0.0 { continue; }
+    cumulative += s;
+    if random_value < cumulative { return i as u16; }
   }
+  // Should be unreachable but here as a fallback.
+  S.iter().rposition(|&s| s > 0.0).unwrap_or(0) as u16
   ```
 - **Action 2: Proof Submission**
   - The selected validator `V` must, within this epoch, call the `verify()` function of the subnet's `weight_verification_contract_address`.
@@ -250,7 +257,7 @@ pub fn is_subsidized_verification_call(
 > [!NOTE]
 > An example of gasless transactions can be found here https://github.com/futureversecom/trn-frontier/blob/b7183775ad8177f7ea8c597707b47b09c884a852/primitives/evm/src/validation.rs#L80 and here https://github.com/polkadot-evm/frontier/issues/849
 
-The potential chain load from this subsidy is minimal. With 256 subnets and a 361-block epoch (~72 minutes), this averages to less than one subsidized transaction per block assuming a `weight_verification_interval` of 1 epoch, an acceptable load for the security gained. A more complex gas sponsorship model can be revisited in a future BIT if necessary.
+The potential chain load from this subsidy is minimal. With 256 subnets and assuming an average 361-block epoch (~72 minutes), this averages to less than one subsidized transaction per block assuming a `weight_verification_interval` of 1 epoch, an acceptable load for the security gained. A more complex gas sponsorship model can be revisited in a future BIT if necessary.
 
 Chain size impact to archive nodes is modelled as follows. Assuming worst-case conditions:
 
@@ -401,13 +408,15 @@ Subnet owners are responsible for defining their own verification contracts, and
 
 The optimistic validity verification mechanism relies on the `drand` randomness beacon to select the validator to submit a weight verification. If the `drand` beacon is compromised, the validator selection process could be manipulated to favor certain validators. Note that this risk is shared with the current system, where the [commit-reveal] process is also dependent on `drand`.
 
+To mitigate this risk, in the case where no `drand` beacon is available for the entirety of the previous tempo, a block hash fallback is employed as a backup mechanism.
+
 ### Data Privacy
 
 The `data` parameter is a `bytes` array, which could contain sensitive information related to scoring within the subnet (e.g., medical or financial data). In these cases, the subnet owner should leverage the privacy preserving features of zero knowledge proofs or avoid sharing this data on-chain at all.
 
 ### Time window for verification
 
-The time window during which a validator can submit their verification is limited to one epoch (361 blocks). It is crucial that validators submit the correct weights and verification data that will be revealed and cross-checked during the reveal epoch. This requires coordination in subnet client code to ensure these operations occur in a reliable sequence to avoid unintentional harm to honest validators.
+The time window during which a validator can submit their verification is limited to one epoch. It is crucial that validators submit the correct weights and verification data that will be revealed and cross-checked during the reveal epoch. This requires coordination in subnet client code to ensure these operations occur in a reliable sequence to avoid unintentional harm to honest validators.
 
 ## Copyright
 
