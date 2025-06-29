@@ -1,0 +1,125 @@
+# BIT-0009: Native collateral support
+
+- **BIT Number:** 0009
+- **Title:** Native collateral support
+- **Author(s):** Rhef
+- **Discussions-to:** https://discord.com/channels/1120750674595024897/1309546649684672582
+- **Status:** Draft
+- **Type:** Subtensor
+- **Created:** 2025-06-29
+- **Updated:** 2025-06-29
+- **Requires:** -
+- **Replaces:** -
+
+## Abstract
+
+A change in subtensor is being proposed to add a new storage map with a key of `(netuid, hotkey)` and a value of `collateral_in_tao`.
+Miners will have an option to lock Tao and then they can also pay it out, unless the validators will vote (using a new system) to burn it.
+Validators may choose to not send (paid) organic traffic to miners which refuse to provide a collateral.
+
+## Motivation
+
+Bittensor miners often try to cheat and the subnet owners have to spend time dealing with exploits,
+ which slows down subnet development. If cheating is disincentivized, subnets development should accelerate.
+
+## Specification
+
+There are a few technical details that still need to be figured out. Among them are:
+- why `(netuid, hotkey)` and not `(netuid, uid)`?
+- when and how miners can reclaim?
+- what about weight copiers (that won't be motivated to vote)?
+- what about flashloans?
+
+These we'll discuss in the coming days, but first lets agree on the subtypes of problems that the collateral system is going to solve. 
+
+## Usecases
+
+| Subnet Type                                 | partial burn      | burn after dereg | deposit before registration |
+| ------------------------------------------- | ----------------- | ------------------- | --------------------------- |
+| **Interactive compute** | ✅ | ❓     | :x:                         |
+| **Job compute**    | ✅ | ✅   | :x:                         |
+| **Prediction**                   | ❓   | :x:                 | ✅           |
+| **Storage**                      | ✅ | ✅   | :x:                         |
+
+### Interactive compute subnets
+
+Think sn27 Neural Internet, sn49 Polaris, sn51 Celium:
+- if a miner promises to rent a machine of a certain type on demand, he needs to come through, otherwise UX is bad and the service built on top of the subnet is not attractive
+- validators can refuse to weight a miner and even dereg it
+- the reputational damage to the subnet can exceed one tempo of incentive + reg fee
+- if the subnet has no uid pressure, reg fee falls to zero
+- the owner can use tricks to prevent market from setting the reg fee, but not for long
+- reg fees don't allow the collateral size to grow with the amount of machines the miner promises to rent
+- reg fees cannot be paid back to the miner, so they must be small
+- reg fees are all the same for all miners - if subnet has jobs that don't pose risk, miners doing those jobs have to pay the same reg fee...
+- in order to prevent collateral-induced uid pressure, the collateral system MUST support burning a part of the collateral
+
+
+### Job compute subnets
+
+Think sn4 Targon, sn12 ComputeHorde:
+- a miner can do jobs that can be corrupt
+- it takes time to verify whether the job was corrupted or not
+- it takes time for one validator to convince others that the job was indeed corrupted
+- a corrupted job has causes damage to the subnet reputation
+- validators using this compute won't misdistribute weights, but their performance will suffer and their reputation may suffer too
+- in order for this to work at all, the collateral system MUST support burning collateral _after_ the uid is deregistered
+
+
+### Prediction subnets
+- impossible to evaluate a trading strategy on historical data
+- high leverage extreme risk strategies are worthless
+- if these can be submitted without any limits, miners will do that
+- some of the strategies will be lucky
+- immunity period insufficient with a 256/1024 uid limit
+- a miner can submit a collateral and (timelocked?) trades before registering
+- if a strategy will be viable, the collateral may be returned
+- if the strategy fails, the collateral will be burned
+- this increases the cost of the attack and makes it not viable anymore
+- in order for the collateral system to properly support prediction subnets, there MUST be a way to pay in collateral _before_ uid registration
+- should collaterals be returned or burned when the subnet is deregistered?
+- evm key association might need a change from uid to hotkey
+- evm keys can then be associated after paying collateral but before registering an uid
+- we have a smart contract that is able to store data on chain cost-effectively
+
+
+### Storage subnets
+- a validator trusts a miner with data (fragments) which the miner should return after getting deregged
+- if the miner doesn't return the data that the validators entrusted him with, the validator should regenarate it so it won't cause data loss
+- regeneration is expensive
+- if many miners run away with data at the same time, eventually data loss can occur
+- if the subnet is going to hold a meaningful amount of data (petabytes), then the miners must be incentivized to return the data to the subnet once they are deregged
+- the validators will burn the collateral of the miner a few days after he's deregged, unless he returns the data back to the subnet
+- in order for the collateral system to properly support storage subnets, there MUST be a way to slash the miners after uid deregistration
+
+
+## Rationale
+
+### hotkey or uid
+TODO
+
+### reclaimation
+TODO
+
+### voting participation
+TODO
+
+### flashloans
+TODO
+
+## Backwards Compatibility
+
+Collaterals will be entirely optional.
+
+
+## Security Considerations
+
+The collateral system may be abused in a number of ways. The governor should have the ability to turn off
+ the collateral system for a given netuid.
+A governance policy of turning the collateral system off for subnets that abuse it should be added
+ to make it clear for everyone what type of usage is allowed.
+
+
+## Copyright
+
+This document is licensed under [The Unlicense](https://unlicense.org/).
