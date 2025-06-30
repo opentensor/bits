@@ -96,7 +96,7 @@ btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1 --netuid 123
 
 Python interface WIP
 ```py
-subnet = Bittensor(network="test")[123]
+subnet = Bittensor(network="test").subnet(netuid=123)
 print(subnet.collaterals[hotkey])
 subnet.collateral_burn_vote({hotkey: amount_to_burn, other_hotkey: other_amount_to_burn})
 reclaim_attempt = subnet.get_collateral_reclaim_attempts(hotkey=None)[0]
