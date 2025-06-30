@@ -87,7 +87,7 @@ Think sn4 Targon, sn12 ComputeHorde:
 
 ## User interface
 
-```
+```awk
 btcli wallet collateral add --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
 btcli wallet collateral schedule_reclaim --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
 btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1
