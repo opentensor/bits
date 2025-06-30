@@ -99,6 +99,8 @@ Python interface WIP
 subnet = Bittensor[123]
 print(subnet.collaterals[hotkey])
 subnet.collateral_burn_vote({hotkey: amount_to_burn, other_hotkey: other_amount_to_burn})
+reclaim_attempt = subnet.get_collateral_reclaim_attempts(hotkey=None)[0]
+print(reclaim_attempt.hotkey, reclaim_attempt.amount, reclaim_attempt.expiry_block)
 ```
 
 ## Rationale
@@ -109,7 +111,8 @@ Whether we use `(netuid, uid)` or `(netuid, hotkey)` doesn't make a lot of diffe
 ### Reclaimation
 There are several ways this can be done:
 - Reclaim only during uid / subnet deregistration (easiest)
-- 
+- Reclaim immediately (bad for some types of subnets)
+- Reclaim after a delay, say 60 tempos, where the reclaim doesn't actually go through if the validators vote to burn it before the delay expires
 
 ### Voting participation
 Since weight copiers won't vote in the collateral system, we need to exclude their stake from the calculation and honest validators should vote `0` if they would prefer to not slash.
