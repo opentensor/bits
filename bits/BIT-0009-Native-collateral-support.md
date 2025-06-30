@@ -92,20 +92,30 @@ Think sn4 Targon, sn12 ComputeHorde:
 - the validators will burn the collateral of the miner a few days after he's deregged, unless he returns the data back to the subnet
 - in order for the collateral system to properly support storage subnets, there MUST be a way to slash the miners after uid deregistration
 
+## User interface
+
+```
+btcli wallet collateral add --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
+btcli wallet collateral schedule_reclaim --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
+btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1
+btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1 --netuid 123
+```
 
 ## Rationale
 
-### hotkey or uid
-TODO
+### Hotkey or uid
+Whether we use `(netuid, uid)` or `(netuid, hotkey)` doesn't make a lot of difference from the implementation or storage standpoint, but as it can be seen in the table above, using hotkey allows for far more functionality (paying collateral before registration and burning collateral after deregistration). 
 
-### reclaimation
-TODO
+### Reclaimation
+There are several ways this can be done:
+- Reclaim only during uid / subnet deregistration (easiest)
+- 
 
-### voting participation
-TODO
+### Voting participation
+Since weight copiers won't vote in the collateral system, we need to exclude their stake from the calculation and honest validators should vote `0` if they would prefer to not slash.
 
-### flashloans
-TODO
+### Flashloans
+Anti-MEV measures will foil flashloans
 
 ## Backwards Compatibility
 
