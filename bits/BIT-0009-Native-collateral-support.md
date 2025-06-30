@@ -24,22 +24,15 @@ Bittensor miners often try to cheat and the subnet owners have to spend time dea
 
 ## Specification
 
-There are a few technical details that still need to be figured out. Among them are:
-- why `(netuid, hotkey)` and not `(netuid, uid)`?
-- when and how miners can reclaim?
-- what about weight copiers (that won't be motivated to vote)?
-- what about flashloans?
-
-These we'll discuss in the coming days, but first lets agree on the subtypes of problems that the collateral system is going to solve. 
-
-## Usecases
+Known usecases and the features they require:
 
 | Subnet Type                                 | partial burn      | burn after dereg | deposit before registration |
 | ------------------------------------------- | ----------------- | ------------------- | --------------------------- |
-| **Interactive compute** | ✅ | ❓     | :x:                         |
+| **Interactive compute** | ✅ | ?     | :x:                         |
 | **Job compute**    | ✅ | ✅   | :x:                         |
-| **Prediction**                   | ❓   | :x:                 | ✅           |
+| **Prediction**                   | ?   | :x:                 | ✅           |
 | **Storage**                      | ✅ | ✅   | :x:                         |
+
 
 ### Interactive compute subnets
 
@@ -99,6 +92,13 @@ btcli wallet collateral add --name coldkey-1 --hotkey hotkey-1 --netuid 123 --am
 btcli wallet collateral schedule_reclaim --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
 btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1
 btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1 --netuid 123
+```
+
+Python interface WIP
+```py
+subnet = Bittensor[123]
+print(subnet.collaterals[uid])
+subnet.collateral_burn_vote({uid: amount_to_burn, other_uid: other_amount_to_burn})
 ```
 
 ## Rationale
