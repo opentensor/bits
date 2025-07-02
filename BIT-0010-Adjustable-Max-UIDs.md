@@ -27,7 +27,7 @@ When a subnet owner reduces the `max_uids` value, the change would take effect i
 
 ## Rationale
 
--
+TBD
 
 ## Backwards Compatibility
 
@@ -35,11 +35,11 @@ This change maintains full backwards compatibility. Existing subnets will contin
 
 ## Reference Implementation (Optional)
 
-TBD - Reference implementation to be developed following community consensus on technical approach.
+TBD (to be developed following community consensus on technical approach)
 
 ## Security Considerations
 
--
+TBD
 
 ## Copyright
 
