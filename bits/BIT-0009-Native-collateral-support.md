@@ -59,7 +59,7 @@ Think sn4 Targon, sn12 ComputeHorde:
 - in order for this to work at all, the collateral system MUST support burning collateral _after_ the uid is deregistered
 
 
-### Prediction subnets
+### Prediction subnets (sn57)
 - impossible to evaluate a trading strategy on historical data
 - high leverage extreme risk strategies are worthless
 - if these can be submitted without any limits, miners will do that
