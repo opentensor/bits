@@ -23,7 +23,7 @@ Every subnet currently operates with a fixed maximum of 256 UIDs regardless of a
 
 This proposal would make the existing `max_uids` hyperparameter modifiable by subnet owners, allowing them to reduce it from the current fixed value of 256 down to a minimum threshold between 32-64 UIDs, with 64 being the preferred lower bound.
 
-When a subnet owner reduces the `max_uids` value, the change would take effect immediately in the next epoch. Any UIDs beyond the new maximum would be automatically deregistered in order of rewards per epoch, with lowest-performing UIDs removed first. All UIDs would be eligible for deregistration based solely on emission performance, not just zero-emission UIDs.
+When a subnet owner reduces the `max_uids` value, the change would take effect immediately in the next epoch. Any UIDs beyond the new maximum would be automatically deregistered in order of emissions, with lowest-performing UIDs removed first. All UIDs would be eligible for deregistration, not just zero-emission UIDs.
 
 ## Rationale
 
