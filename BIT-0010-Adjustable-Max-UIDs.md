@@ -2,7 +2,7 @@
 
 - **BIT Number:** 0010
 - **Title:** Adjustable Max UIDs
-- **Author(s):** Namoray, "Maciej Kula"
+- **Author(s):** Namoray
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1389781506444230656
 - **Status:** Draft
 - **Type:** Core
