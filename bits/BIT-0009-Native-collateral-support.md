@@ -132,6 +132,9 @@ The collateral system may be abused in a number of ways. The governor should hav
 A governance policy of turning the collateral system off for subnets that abuse it should be added
  to make it clear for everyone what type of usage is allowed.
 
+The collateral system is meant to be burned automatically when a miner egregiously breaches the rules of the subnet in such a way, that pulling weights and deregging him is not a sufficient deterrent.
+If a subnet will be caught issuing burns manually or carelessly, their privilege to use the collateral should be revoked by the governor.
+
 
 ## Copyright
 
