@@ -87,6 +87,7 @@ Think sn4 Targon, sn12 ComputeHorde:
 
 ## User interface
 
+### CLI
 ```awk
 btcli wallet collateral add --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
 btcli wallet collateral schedule_reclaim --name coldkey-1 --hotkey hotkey-1 --netuid 123 --amount 10
@@ -94,15 +95,24 @@ btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1
 btcli wallet collateral status --name coldkey-1 --hotkey hotkey-1 --netuid 123
 ```
 
-Python interface WIP
+### SDK
 ```py
 subnet = Bittensor(network="test").subnet(netuid=123)
 print(subnet.collaterals[hotkey])
 
-reclaim_attempt = subnet.get_collateral_reclaim_attempts(hotkey=None)[0]
-print(reclaim_attempt.hotkey, reclaim_attempt.amount, reclaim_attempt.expiry_block)
+reclaim_attempt = subnet.get_collateral_reclaim_attempts(hotkey=None)[0]  # hotkey=None means get reclaim attempts for all hotkeys
+print(
+    reclaim_attempt.hotkey,
+    reclaim_attempt.amount,
+    reclaim_attempt.expiry_block,
+)
 
-subnet.collateral_burn_vote({hotkey: how_much_to_burn, other_hotkey: other_how_much_to_burn})  # how_much_to_burn=1 means burn entire collateral
+subnet.collateral_burn_vote(
+    {
+        hotkey: how_much_to_burn,
+        other_hotkey: other_how_much_to_burn,
+    },
+)  # how_much_to_burn=1 means burn entire collateral
 ```
 
 ## Rationale
