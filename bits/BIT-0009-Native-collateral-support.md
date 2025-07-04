@@ -115,7 +115,7 @@ subnet.collateral_burn_vote(
 )  # how_much_to_burn=1 means burn entire collateral
 ```
 
-## Rationale
+## Considerations
 
 ### Hotkey or uid
 Whether we use `(netuid, uid)` or `(netuid, hotkey)` doesn't make a lot of difference from the implementation or storage standpoint, but as it can be seen in the table above, using hotkey allows for far more functionality (paying collateral before registration and burning collateral after deregistration). 
@@ -124,16 +124,26 @@ Whether we use `(netuid, uid)` or `(netuid, hotkey)` doesn't make a lot of diffe
 There are several ways this can be done:
 - Reclaim only during uid / subnet deregistration (easiest)
 - Reclaim immediately (bad for some types of subnets)
-- Reclaim after a delay, say 60 tempos, where the reclaim doesn't actually go through if the validators vote to burn it before the delay expires
+- Reclaim after a delay, say in 3 supertempos (60 tempos, ~72h), where the reclaim doesn't actually go through if the validators vote to burn it before the delay expires
 
 ### Voting participation
 Since weight copiers won't vote in the collateral system, we need to exclude their stake from the calculation and honest validators should vote `0` if they would prefer to not slash.
 
+In order to reduce the amount of `0` votes cast by honest validators for every hotkey which holds the collateral, the code should assume a `0` vote for every validator which participated at least once in the given supertempo (20 tempos) in any vote:
+- Weight copiers will never vote on anything, so their stake will be substracted from the total
+- Small malicious validators won't ever get to 50% of effective stake
+- Positive votes will go through efficiently
+
+### When to count the votes and burn
+In the subnet superblock (or superblock + N tempos if one day we'll be reducing superblock complexity). This way if there is a problem with the validators crashing, there will be sufficient time to repair them before a malicious hybrid uid could burn collateral of his competitors.
+
 ### Flashloans
-Anti-MEV measures will foil flashloans
+Anti-MEV measures will foil flashloans.
+
+### Stake before burn?
+No, because that will incentivize holders to burn collaterals and it's not a nice dynamic to have on a system-wide scale.
 
 ## Backwards Compatibility
-
 Collaterals will be entirely optional.
 
 
