@@ -98,9 +98,11 @@ Python interface WIP
 ```py
 subnet = Bittensor(network="test").subnet(netuid=123)
 print(subnet.collaterals[hotkey])
-subnet.collateral_burn_vote({hotkey: amount_to_burn, other_hotkey: other_amount_to_burn})
+
 reclaim_attempt = subnet.get_collateral_reclaim_attempts(hotkey=None)[0]
 print(reclaim_attempt.hotkey, reclaim_attempt.amount, reclaim_attempt.expiry_block)
+
+subnet.collateral_burn_vote({hotkey: how_much_to_burn, other_hotkey: other_how_much_to_burn})  # how_much_to_burn=1 means burn entire collateral
 ```
 
 ## Rationale
