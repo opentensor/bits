@@ -22,6 +22,27 @@ Validators may choose to not send (paid) organic traffic to miners which refuse 
 Bittensor miners often try to cheat and the subnet owners have to spend time dealing with exploits,
  which slows down subnet development. If cheating is disincentivized, subnets development should accelerate.
 
+### A Note on Slashing Philosophy
+(this chapter was taken from the [collateral smart contract](https://github.com/bactensor/collateral-contracts) developed for sn12 and sn51 in )
+
+The power to slash collateral carries weight — it protects subnet quality, but also risks abuse if unchecked.
+All slashing must be triggered by **automated validator logic**, following deterministic, verifiable rules.
+
+To ensure trust and accountability:
+
+- **Justified** — slashing must be based on strong evidence (logs, signatures, links).
+- **Transparent** — the justification should be public.
+- **Proportional** — slashing amounts should reflect the severity and intent of the violation.
+
+In the future, validators may run slashing logic on a **Trusted Execution Environment (TEE)** and submit signed proofs 
+that the logic was executed correctly on a secure VM — providing even stronger trust guarantees.
+
+When new types of miner exploits are discovered, subnet owners will release updated validator logic.
+Validators should deploy these updates and restart their validators — updated logic will then automatically catch and slash offending miners.
+
+Slashing is a **safety mechanism** for **trust-minimized collaboration**, not a discretionary tool.
+Subnet owners and validators should ensure that all slashing is implemented and triggered **in code only** — not through human judgment.
+
 ## Specification
 
 Known usecases and the features they require:
