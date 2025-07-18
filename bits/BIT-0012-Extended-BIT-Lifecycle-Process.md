@@ -3,7 +3,7 @@
 - **BIT Number:** 0012
 - **Title:** Extended BIT Lifecycle Process
 - **Author(s):** Maciej Kula
-- **Discussions-to:** TBD
+- **Discussions-to:** https://discord.com/channels/1120750674595024897/1395831145827926137
 - **Status:** Draft
 - **Type:** Meta
 - **Created:** 2025-07-18
