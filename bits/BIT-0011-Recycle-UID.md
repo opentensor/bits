@@ -26,7 +26,7 @@ When validators collectively decide certain incentives should not be distributed
 ```rust
 // Distribute mining incentives.
 for (hotkey, incentive) in incentives {
-    if let Ok(owner_hotkey) = SubnetOwnerHotkey::::try_get(netuid) {
+    if let Ok(owner_hotkey) = SubnetOwnerHotkey::<T>::try_get(netuid) {
         if hotkey == owner_hotkey {
             continue; // Skip/burn miner-emission for SN owner hotkey.
         }
@@ -39,10 +39,10 @@ for (hotkey, incentive) in incentives {
 ```rust
 // Distribute mining incentives.
 for (hotkey, incentive) in incentives {
-    if let Ok(owner_hotkey) = SubnetOwnerHotkey::::try_get(netuid) {
+    if let Ok(owner_hotkey) = SubnetOwnerHotkey::<T>::try_get(netuid) {
         if hotkey == owner_hotkey {
             // Recycle the incentive instead of burning
-            SubnetAlphaOut::::mutate(netuid, |total| {
+            SubnetAlphaOut::<T>::mutate(netuid, |total| {
                 *total = total.saturating_sub(incentive);
             });
             continue;
