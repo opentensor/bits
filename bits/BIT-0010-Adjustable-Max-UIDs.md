@@ -4,10 +4,10 @@
 - **Title:** Adjustable Max UIDs
 - **Author(s):** Namoray
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1389781506444230656
-- **Status:** Draft
+- **Status:** Withdrawn
 - **Type:** Core
-- **Created:** 02/07/2025
-- **Updated:** 02/07/2025
+- **Created:** 2025-07-02
+- **Updated:** 2025-07-18
 - **Requires:** -
 - **Replaces:** -
 
