@@ -12,7 +12,7 @@
 
 ## Abstract
 
-This BIT proposes changing the subnet owner UID implementation from a "burn UID" to a "recycle UID". Currently, mining incentives allocated to the subnet owner hotkey are burned by being skipped during distribution while still being counted in emission total. This proposal would instead recycle these incentives by reducing the `SubnetAlphaOut` variable, making the ALPHA available for future distribution similar to how TAO was recycled pre-DTAO.
+This BIT proposes changing the subnet owner UID implementation from a "burn UID" to a "recycle UID". Currently, mining incentives allocated to the subnet owner hotkey are burned by being skipped during distribution while still being counted in emission totals. This proposal would instead recycle these incentives by reducing the `SubnetAlphaOut` variable, making the ALPHA available for future distribution similar to how TAO was recycled pre-DTAO.
 
 ## Motivation
 
@@ -54,7 +54,7 @@ for (hotkey, incentive) in incentives {
 
 ## Rationale
 
-The change aligns with the existing recycling pattern used in `do_recycle_alpha` and maintains consistency with pre-DTAO TAO recycling on root. By reducing `SubnetAlphaOut`, the recycled ALPHA becomes available for future distribution rather than being permanently destroyed.
+The change aligns with the existing recycling pattern used in `do_recycle_alpha` and maintains consistency with pre-DTAO TAO recycling on root. By reducing `SubnetAlphaOut`, the recycled ALPHA becomes available for future distribution rather than being permanently "destroyed".
 
 ## Backwards Compatibility
 
