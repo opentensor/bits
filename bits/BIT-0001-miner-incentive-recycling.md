@@ -4,10 +4,10 @@
 - **Title:** Miner Emission Recycling
 - **Author(s):** Thomas Dougherty (tdougherty@taoshi.io) and Arrash Yasavolian (arrash@taoshi.io)
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1242999357436071956/1273127932491075638
-- **Status:** Draft
+- **Status:** Replaced
 - **Type:** Core
 - **Created:** September 11, 2024
-- **Updated:** Sepetmber 11, 2024
+- **Updated:** Sepetmber 24, 2025
 - **Requires:**
 - **Replaces:**
 
