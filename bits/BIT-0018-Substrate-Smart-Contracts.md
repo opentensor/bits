@@ -2,7 +2,7 @@
 
 - **BIT Number:** 0018
 - **Title:** Substrate Smart Contracts
-- **Author(s):** Ben Mason
+- **Author(s):** Ben Mason, Francisco Silva
 - **Status:** Draft
 - **Type:** Core
 - **Created:** 24/09/2025
@@ -68,13 +68,16 @@ Substrate-native bridge contracts for subnets with their own chains to bridge al
 
 ## Security Considerations
 
-### Storage Access
+### Chain extensions
 
-Smart contracts can read from storage, but **they cannot write directly to storage**.
+A chain extension is a way to extend `pallet_contracts` API by exposing parts of the runtime logic to smart contracts. Added functions should handle security (needs to be audited). In a case of a wrapper around an existing pallet (so that contract can call functions of this pallet) every pallet dispatchable should be implemented as a chain extension function, unit tested and be benchmarked (to determine the correct amount of weight).
 
 ### Runtime Calls
 
-Smart contracts have to make runtime calls in which the caller is the contract itself. Similar to how EVM DEXs use ERC20 allowances to move tokens, users would have to grant delegate the contract as a staking proxy to allow it to move stake on their behalf. As with EVM, users have to analyse the contract they are interacting with to decide if it is exploitative or not.
+`call_runtime` is a function already present in `pallet_contracts` API that dispatches a `Call` passed as an argument. This way contracts can call pallets without having to go through chain extensions. There is no security issue and does not need to be audited (as it calls pallets directly), weight is also handled (as it uses weight from the pallet). No need to add tests either (pallets already have tests).
+To activate/deactivate dispatchables accessible from a contract it should be added to `CallFilter`.
+
+Smart contracts can to make runtime calls in which the caller is the contract itself. Similar to how EVM DEXs use ERC20 allowances to move tokens, users would have to grant delegate the contract as a staking proxy to allow it to move stake on their behalf. As with EVM, users have to analyse the contract they are interacting with to decide if it is exploitative or not.
 
 ### Design Decisions
 
