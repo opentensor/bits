@@ -70,7 +70,7 @@ Substrate-native bridge contracts for subnets with their own chains to bridge al
 
 ### Storage Access
 
-Smart contracts can read from storage, but **they cannot write directly to storage**, so they cannot be used to exploit the chain.
+Smart contracts can read from storage, but **they cannot write directly to storage**.
 
 ### Runtime Calls
 
