@@ -1,6 +1,6 @@
-# BIT-0018: Substrate Smart Contracts
+# BIT-0019: Substrate Smart Contracts
 
-- **BIT Number:** 0018
+- **BIT Number:** 0019
 - **Title:** Substrate Smart Contracts
 - **Author(s):** Ben Mason, Francisco Silva
 - **Status:** Draft
