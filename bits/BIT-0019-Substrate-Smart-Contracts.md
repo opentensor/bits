@@ -11,6 +11,10 @@
 
 This BIT proposes the integration of Substrate's `pallet_contracts` into the Bittensor blockchain, enabling smart contracts written in Rust using the ink! language. This native Substrate smart contract functionality will provide seamless interaction between smart contracts and Bittensor's pallets, offering a more developer-friendly and user-friendly alternative to the existing EVM-based smart contracts.
 
+## PR
+
+https://github.com/opentensor/subtensor/pull/2059
+
 ## Motivation
 
 The current EVM integration in Bittensor creates significant friction for both developers and users due to the fundamental differences between Ethereum's account-based model and Substrate's architecture. This mismatch complicates smart contract development, increases gas costs, and creates poor user experiences when interacting with Substrate-based wallets.
