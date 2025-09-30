@@ -14,6 +14,8 @@
 ### Abstract
 This BIT proposes synchronizing all subnet ALPHA emissions to the global TAO halving schedule, replacing per-subnet ALPHA halvings that introduce timing-driven cohort bias in Dynamic TAO. Under synchronization, ALPHA-halving intervals stop compressing (getting shorter), liquidity impact depends on sell fraction rather than cohort timing, liquidation haircuts disappear, and the root proportion declines uniformly, resulting in fairer and more predictable behavior across cohorts.
 
+Resources: [Whitepaper](bit-xxxx/whitepaper.pdf), [Litepaper](https://docs.learnbittensor.org/research/synchronized-halving)
+
 ### Motivation
 The current design uses global TAO halvings but per-subnet ALPHA halvings, so otherwise identical subnet behavior results in different outcomes based solely on registration timing, which compresses ALPHA-halving intervals, increases AMM liquidity drain for later cohorts, creates liquidation discounts, and distorts the pace of root proportion decline. These asymmetries reduce fairness, predictability, and comparability across cohorts.
 
