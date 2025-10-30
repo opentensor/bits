@@ -3,11 +3,11 @@
 - BIT Number: XXXX
 - Title: Synchronized TAO–ALPHA Halvings in Dynamic TAO
 - Author(s): Maciej Kula
-- Discussions-to: TBD
-- Status: Draft
+- Discussions-to: -
+- Status: Rejected
 - Type: Core
 - Created: 2025-09-29
-- Updated: 2025-09-29
+- Updated: 2025-10-30
 - Requires: None
 - Replaces: None
 
