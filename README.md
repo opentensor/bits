@@ -29,7 +29,13 @@ BITs are classified into the following categories:
 
 ## BITs Lifecycle
 
-BITs pass through several stages before it becomes final:
+BITs pass through several stages before becoming final. The lifecycle varies by type:
+
+- **Core/Subtensor BITs:** Draft → Review → Last Call → Accepted → Final
+- **Interface/Networking BITs:** Draft → Review → Last Call → Accepted → Final
+- **Meta/Informational BITs:** Draft → Review → Final
+
+### Stages
 
 - **Draft:** The initial state of a BIT when submitted as a pull request. In this stage, the
   BIT is open for discussion and feedback.
@@ -37,12 +43,21 @@ BITs pass through several stages before it becomes final:
   editors and the community.
 - **Last Call:** The BIT is nearing finalization and has a set period for final comments and
   objections.
-- **Final:** The BIT is considered complete and implemented (or ready for implementation).
+- **Accepted:** The BIT has achieved consensus but is not yet implemented.
+- **Final:** The BIT is considered complete and implemented.
 - **Stagnant:** The BIT has not been updated for a significant period or lacks consensus, so it
   is no longer considered active.
 - **Withdrawn:** The author of the BIT has decided to withdraw the proposal.
 - **Living:** The BIT is a living document that is continually updated with new information
   (e.g., coding standards or best practices).
+- **Rejected:** The BIT has been formally rejected due to lack of consensus or fundamental
+  issues.
+- **Deferred:** The BIT lacks current consensus but may be reconsidered in the future.
+- **Replaced:** The BIT has been superseded by a newer proposal.
+- **Obsolete:** The BIT is no longer relevant due to changing circumstances.
+
+All BIT types can transition to Rejected, Deferred, Withdrawn, Replaced, or Obsolete at
+appropriate stages.
 
 ## How to Submit BITs
 
@@ -82,8 +97,9 @@ BITs serve as the primary mechanism for proposing new features or changes to the
 protocol, fostering open-source development, transparency, and structured decision-making.
 
 ### How are BITs approved?
-BITs are approved through community consensus during the Review and Last Call stages. Editors
-facilitate the process but do not unilaterally approve BITs.
+BITs are approved through community consensus during the Review and Last Call stages, moving
+to Accepted once consensus is reached and then to Final once implemented. Editors facilitate
+the process but do not unilaterally approve BITs.
 
 ### Can I update BITs after they are finalized?
 Once BITs are finalized, they are generally considered complete. However, living BITs are an
