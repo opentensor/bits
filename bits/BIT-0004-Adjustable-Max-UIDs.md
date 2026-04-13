@@ -17,6 +17,10 @@ This BIT proposes allowing subnet owners to adjust the maximum number of UIDs on
 
 ## Motivation
 
+Every subnet currently operates with a fixed maximum of 256 UIDs regardless of actual demand. No subnet also currently has close to that many unique entities mining, yet validators are still required to evaluate up to 256 miners every epoch. For some subnets, forming opinions on this many miners per epoch is not feasible.
+
+## Specification
+
 This proposal makes the existing max_allowed_uids hyperparameter modifiable by subnet owners (and root), via the sudo_set_max_allowed_uids extrinsic in the admin-utils pallet. The value can be set within the following constraints:
 
 - The new value must be greater than or equal to the subnet's `min_allowed_uids` (default: 64).
@@ -24,12 +28,6 @@ This proposal makes the existing max_allowed_uids hyperparameter modifiable by s
 - The new value must be less than or equal to the global `DefaultMaxAllowedUids` (256).
 - The new value multiplied by the subnet's current mechanism count must not exceed `DefaultMaxAllowedUids`, to prevent chain bloat.
 - The extrinsic is callable by the subnet owner or root.
-
-## Specification
-
-This proposal would make the existing `max_uids` hyperparameter modifiable by subnet owners, allowing them to reduce it from the current fixed value of 256 down to a minimum threshold between 32-64 UIDs, with 64 being the preferred lower bound.
-
-When a subnet owner reduces the `max_uids` value, the change would take effect immediately in the next epoch. Any UIDs beyond the new maximum would be automatically deregistered in order of emissions, with lowest-performing UIDs removed first. All UIDs would be eligible for deregistration, not just zero-emission UIDs.
 
 ## Rationale
 
