@@ -1,6 +1,6 @@
-# BIT-0004: Adjustable Max UIDs
+# BIT-0005: Adjustable Max UIDs
 
-- **BIT Number:** 0004
+- **BIT Number:** 0005
 - **Title:** Adjustable Max UIDs
 - **Author(s):** Namoray
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1389781506444230656
