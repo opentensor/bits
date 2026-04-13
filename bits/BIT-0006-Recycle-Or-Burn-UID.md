@@ -1,6 +1,6 @@
-# BIT-0005: Recycle UID
+# BIT-0006: Recycle or Burn UID
 
-- **BIT Number:** 0005
+- **BIT Number:** 0006
 - **Title:** Recycle or Burn Subnet Owner UID Incentives
 - **Author(s):** Maciej Kula, Vune
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1392648789956890636
