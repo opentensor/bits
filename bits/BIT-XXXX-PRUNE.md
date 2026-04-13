@@ -14,7 +14,7 @@
 
 Bittensor currently lacks a dedicated governance layer for subnet oversight. This absence has produced a structural misalignment between subnet owners, stakers, and miners — one that recent events have made difficult to ignore. The abrupt exit of Covenant AI, whose owners mass-liquidated their token holdings, and the governance failures observed within Subnet 29 illustrate the risks of unchecked subnet ownership. Without formal mechanisms for community intervention, orderly transitions, or structured exits, subnet owners can act against the interests of their stakeholders with no recourse available to the network.
 
-This BIT introduces the **veAlpha governance layer** to address this gap. By requiring participants to lock Alpha tokens for up to four years in exchange for time-weighted voting power, veAlpha ties governance influence directly to long-term economic commitment. The community gains the ability to democratically challenge misaligned subnets, propose hyperparameter adjustments, or initiate orderly ownership transitions — all through on-chain, auditable processes. When a challenge succeeds, the subnet enters a Dutch auction for the subnet slot where prospective owners can bid TAO to take over operations, preserving the slot's value rather than destroying it. Subnet owners, in turn, must maintain locked positions to defend their slots against these challenges, creating a credible cost of incumbency. The result is a cooperative equilibrium in which the incentives of owners, stakers, and the network are durably aligned.
+This BIT introduces the **veAlpha governance layer** to address this gap. By requiring participants to lock Alpha tokens for up to four years in exchange for time-weighted voting power, veAlpha ties governance influence directly to long-term economic commitment. The community gains the ability to democratically challenge misaligned subnets or initiate orderly ownership transitions — all through on-chain, auditable processes. When a challenge succeeds, the subnet enters a Dutch auction for the subnet slot where prospective owners can bid TAO to take over operations, preserving the slot's value rather than destroying it. Subnet owners, in turn, must maintain locked positions to defend their slots against these challenges, creating a credible cost of incumbency. The result is a cooperative equilibrium in which the incentives of owners, stakers, and the network are durably aligned.
 
 The veAlpha governance layer does not alter the existing emission or deregistration pricing models. Instead, it introduces an additional layer beyond the current price-dependent deregistration mechanism — a market-driven, time-weighted incentive alignment system that enables the network to democratically prune subnets without requiring price decay.
 
@@ -38,7 +38,7 @@ Subnet owners receive 18% of all emissions from their subnet with no lock, no ve
 
 Given that the network has no way to prune itself other than waiting for a subnet's price to drop below the deregistration threshold, this proposal introduces two complementary mechanisms:
 
-1. **A baseline governance layer (veAlpha)** that gives committed stakeholders — both Alpha holders and root stakers — democratic voting power over subnet lifecycle and configuration, grounded in long-term token locks rather than transient balances.
+1. **A baseline governance layer (veAlpha)** that gives committed stakeholders — both Alpha holders and root stakers — democratic voting power over subnet lifecycle, grounded in long-term token locks rather than transient balances.
 2. **A liquidation auction mechanism** that allows subnets to be democratically deregistered through a bonded challenge followed by a Dutch auction, preserving slot value through orderly transfer rather than destruction.
 
 ## Specification
@@ -135,21 +135,7 @@ The subnet proceeds to fallback liquidation via the market-based distribution mo
   - 41% to Root stakers
   - 18% recycled to protocol
 
-### 7. Hyperparameter Governance
-
-veAlpha extends beyond liquidation to give committed stakeholders a voice in subnet configuration. The same bonded-proposal framework governs hyperparameter adjustments:
-
-**Scope.** veAlpha holders on a subnet can propose changes to on-chain subnet hyperparameters, including but not limited to: tempo, registration difficulty, immunity period, weights version key, weights rate limit, and min/max difficulty.
-
-**Proposal mechanics.** The proposer posts a bond and a 7-day voting window opens, identical to liquidation challenges. All veAlpha holders on the subnet plus allocated root stakers vote for or against the proposed parameter change.
-
-**Owner alignment.** Unlike liquidation challenges (where the owner auto-defends), the subnet owner's veAlpha **automatically counts as "for" on hyperparameter proposals by default** — reflecting the assumption that the owner is aligned with subnet configuration decisions. The owner can override this default and vote against community-proposed changes.
-
-**Resolution.** If the proposal passes, the hyperparameter is adjusted on-chain directly — no auction or liquidation is triggered. If the proposal fails, the proposer's bond is slashed under the same 50/50 split (Alpha holders / protocol recycling).
-
-**Signal value.** A pattern of community-imposed hyperparameter changes over the owner's objection is a strong signal of misalignment. It may serve as a leading indicator and catalyst for a subsequent liquidation challenge, providing an escalation path from configuration disagreement to full subnet takeover.
-
-### 8. Incentive Dynamics
+### 7. Incentive Dynamics
 
 The veAlpha governance layer's game theory creates a self-reinforcing equilibrium that selects for long-term aligned participants on both sides of governance:
 
@@ -165,7 +151,7 @@ The veAlpha governance layer's game theory creates a self-reinforcing equilibriu
 
 **Integrated Staking Utility:** Subnets can leverage veAlpha as a dynamic rewards mechanism, directly linking governance participation to tangible benefits aligned with the subnet's primary services. For example, subnets may offer enhanced API access, reduced transaction fees, premium features, or other valuable incentives to users who lock and stake Alpha. This not only drives greater community engagement but also fosters positive network effects and sustains long-term alignment between subnet growth and active participant contribution.
 
-### 9. Flow Summary
+### 8. Flow Summary
 
 ```
 Liquidation Challenge Flow:
@@ -201,21 +187,6 @@ Swap     │
   ▼    Slot Released
 New
 Owner
-
-Hyperparameter Governance Flow:
-
-  Hyperparameter Proposal (bonded)
-        │
-        ▼
-  7-Day veAlpha Vote
-       / \
-      /   \
-  Passes   Fails
-    │        │
-    ▼        ▼
-  Parameter  Bond Slashed
-  Adjusted   Cooldown
-  On-Chain
 ```
 
 ## Rationale
@@ -225,7 +196,6 @@ Hyperparameter Governance Flow:
 - **Price discovery and value preservation.** The subnet auction ensures slots are transferred at or above their fallback TAO value (τ_i), safeguarding Alpha holders from fire-sale prices.
 - **Orderly exit.** Alpha holders choose to opt in or out of transitions, allowing a personalized mix of continued exposure or safe exit with TAO payout.
 - **Resistance to opportunistic takeover.** The bonded-challenge model, veAlpha lock requirements, and bond slashing make hostile challenges expensive and self-limiting.
-- **Community-driven configuration.** Hyperparameter governance gives committed stakeholders a direct, on-chain mechanism to influence subnet configuration without requiring owner cooperation.
 - **Transparency and accountability.** All governance actions — challenges, votes, bond slashing, auctions — are on-chain and auditable.
 
 ### Why veAlpha
@@ -235,7 +205,6 @@ veAlpha governance is superior to simple validator-only voting for subnet lifecy
 - **Sybil resistance.** Voting power requires locking real capital for extended periods, not just running validator infrastructure.
 - **Proportional representation.** Anyone holding a subnet's Alpha can participate in governance, not just validators — broadening the governance base while weighting for conviction.
 - **Permissionless challenge and defense.** Any committed stakeholder can initiate or defend against a liquidation challenge. Governance is not gated by validator status.
-- **Natural escalation path.** Hyperparameter governance provides a lower-stakes mechanism for the community to signal dissatisfaction before resorting to a full liquidation challenge.
 
 ### Alternative Approaches Considered
 
@@ -253,7 +222,7 @@ Each of these alternative approaches was found to be fragile, exclusionary, or u
 
 ## Backwards Compatibility
 
-The veAlpha governance layer introduces new on-chain state (veAlpha lock records, governance proposals, bond escrow, auction tracking, hyperparameter proposal records) and new dispatchable functions. Existing subnets continue to operate unchanged until they interact with the liquidation pipeline. The fallback liquidation logic is consistent with the established market-based distribution path. No migration of existing subnet data is required.
+The veAlpha governance layer introduces new on-chain state (veAlpha lock records, governance proposals, bond escrow, auction tracking) and new dispatchable functions. Existing subnets continue to operate unchanged until they interact with the liquidation pipeline. The fallback liquidation logic is consistent with the established market-based distribution path. No migration of existing subnet data is required.
 
 ### Implementation Paths
 
@@ -271,11 +240,10 @@ N/A — To be developed upon BIT acceptance.
 
 ## Security Considerations
 
-- **Bond griefing:** wealthy actors could spam liquidation challenges or hyperparameter proposals to drain bond capital from repeated slashing. Mitigated by per-subnet cooldown periods after failed proposals and the material cost of slashing itself.
+- **Bond griefing:** wealthy actors could spam liquidation challenges to drain bond capital from repeated slashing. Mitigated by per-subnet cooldown periods after failed challenges and the material cost of slashing itself.
 - **Whale dominance:** a single actor locking massive Alpha could dominate a subnet's governance. Mitigated by the root staker counterweight (18% weight), the natural cost of acquiring large Alpha positions on the open market, and the 4-year lock commitment required for maximum voting power.
 - **Lock manipulation:** actors might time locks to maximize vote weight during proposal windows, then withdraw. Mitigated by linear decay — short locks yield minimal veAlpha, and withdrawal is only possible after full expiry.
 - **Gauge-weight manipulation:** root stakers could rapidly shift weight to swing active votes. Mitigated by the 18% weight cap relative to Alpha lockers and the 7-day voting period which limits last-minute reallocation impact.
-- **Hyperparameter abuse:** malicious parameter changes could harm subnet operation. Mitigated by the bond requirement, owner auto-defense (owner veAlpha counts "for" by default), and governance cooldowns.
 - **Auction gaming:** bidders might attempt to delay or manipulate the subnet auction. The 5-day hard cap and deterministic per-block price decay limit such strategies.
 - **Opt-in/opt-out timing:** Alpha holders must have a clear, bounded window to elect during auctions. Default behavior is opt-out if no action is taken, protecting passive holders.
 - **Cold key swap security:** the key swap mechanism follows existing Subtensor cold key swap security guarantees to prevent theft or unauthorized transfer.
