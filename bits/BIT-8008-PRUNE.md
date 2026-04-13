@@ -1,6 +1,6 @@
-# BIT-XXXX: veAlpha Governance Layer for Bittensor
+# BIT-8008: veAlpha Governance Layer for Bittensor
 
-- **BIT Number:** XXXX
+- **BIT Number:** 8008
 - **Title:** veAlpha Governance Layer — Vote-Escrowed Subnet Governance with Liquidation Auctions
 - **Author(s):** Victor Teixeira (0xVonBismarck on Discord & Twitter)
 - **Discussions-to:** [https://github.com/opentensor/bits/discussions](https://github.com/opentensor/bits/discussions)
