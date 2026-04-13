@@ -1,0 +1,57 @@
+# BIT-0000: Title of BIT
+
+- **BIT Number:** 0017
+- **Title:** Revamping neuron UID registration
+- **Author(s):** fish
+- **Discussions-to:** none
+- **Status:** Draft
+- **Type:** Subtensor
+- **Created:** 23 Sep 2025
+- **Updated:** 23 Sep 2025
+- **Requires:** none
+- **Replaces:** none
+
+## Abstract
+
+Current issues:
+ - large burn price fluctuations
+ - long periods where nobody can register
+
+Proposed fixes:
+ - price changes every block not every interval
+ - remove all rate limits from registration
+
+## Motivation
+
+Current neuron UID registration has many issues. It is almost 100% monopolized by reg bots now. And having a performant reg bot can allow you to pay substancially less in registration fees over time. This is flawed. Registration should not be a competition to get your transaction first in the block. And the price mechanism shouldn't be structured in a way that the price is only favorable every other hour. Many subnets have a low adjustment alpha value which cause drastic price movements, but only once per adjustment interval. So, miners end up only registering every other or every 3rd adjustment interval.
+
+## Specification
+
+Proposed new mechanism:
+The registration price for new subents should be defined by 2 new hyperparameters settable by the subnet owner, replacing adjustment alpha and adjustment interval. 
+BurnHalfLife: This will define the number of blocks until the registration price halves from the current value
+BurnIncreaseMult: This will define the multiplier that the registration price increases on a registration
+
+Subnets will have a cost that decays as determined by BurnHalfLife and increases by BurnIncreaseMult the block after a registration. MaxRegrationsPerInterval will still be 1.
+
+Param Defaults:
+BurnHalfLife: 360
+BurnIncreaseMult: 2
+
+Each new subnet will start with a neuron burn cost of 1 tao, halving every 360 blocks. With these defaults, we can target 20 regsitrations per day.
+
+## Rationale
+
+This solves many miner headaches. It eliminates the need for a competitive regitration script in order to get UID slots, and it allows for miners to pay for a slot whenever they want, without rate limits. They will just pay more. It's annoying when miners get rate limited and have to stop their mining operation sitting around until the next adjustment interval. In this new mechanism, there should never be a lock out from new slots, just an exponentional increase in cost as more are bought without waiting. This is also a built-in safety mech for preventing uid spam without adding artificial constrants. It makes everything market-based.
+
+## Backwards Compatibility
+
+No backwards compatibility concerns
+
+## Security Considerations
+
+none
+
+## Copyright
+
+This document is licensed under [The Unlicense](https://unlicense.org/).
