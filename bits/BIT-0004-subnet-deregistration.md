@@ -1,6 +1,6 @@
-# BIT-0005: Subnet Deregistration
+# BIT-0004: Subnet Deregistration
 
-- **BIT Number:** 0005
+- **BIT Number:** 0004
 - **Title:** Subnet Deregistration
 - **Author(s):** John Spiigot, Greg Zaitsev
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1346557046761324545
