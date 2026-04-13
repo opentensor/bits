@@ -1,6 +1,6 @@
 # BIT-0005: dTAO Subnet Start Call Function
 
-- **BIT Number:** 0005
+- **BIT Number:** 0002
 - **Title:** dTAO Subnet Start Call
 - **Author(s):** CapriciousSage, Rhef, Vune
 - **Status:** Final
