@@ -1,13 +1,13 @@
-# BIT-0012: Extended BIT Lifecycle Process
+# BIT-0003: Extended BIT Lifecycle Process
 
-- **BIT Number:** 0012
+- **BIT Number:** 0003
 - **Title:** Extended BIT Lifecycle Process
 - **Author(s):** Maciej Kula
 - **Discussions-to:** https://discord.com/channels/1120750674595024897/1395831145827926137
 - **Status:** Draft
 - **Type:** Meta
 - **Created:** 2025-07-18
-- **Updated:** 2025-07-18
+- **Updated:** 2026-04-13
 - **Requires:** None
 
 ## Abstract
