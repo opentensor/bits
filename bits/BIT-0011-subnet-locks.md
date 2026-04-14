@@ -1,13 +1,13 @@
-# BIT-0013: Stake locks
+# BIT-0011: Stake locks
 
-- **BIT Number:** 0013
+- **BIT Number:** 0011
 - **Title:** Stake Locks
 - **Author(s):** Greg Zaitsev
 - **Discussions-to:** [URL for discussion thread]
 - **Status:** Draft
 - **Type:** Core
 - **Created:** 2025-07-23
-- **Updated:** 2025-07-23
+- **Updated:** 2026-04-14
 
 **Note:** This BIT in fact tables the [PR #1860](https://github.com/opentensor/subtensor/pull/1860).
 
